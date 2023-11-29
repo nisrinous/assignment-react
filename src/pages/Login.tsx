@@ -4,9 +4,28 @@ import Brand from "../components/Brand";
 
 import sideImage from "../assets/image.png";
 import logo from "../assets/image 5.png";
+import { useAuth } from "../stores/AuthContext";
+import { useState } from "react";
+import toast from "react-hot-toast";
 
 const Login = (): JSX.Element => {
+  const { login } = useAuth();
   const navigate = useNavigate();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      await login(email, password);
+      toast.success("Log in successful!");
+      navigate("/product/add");
+    } catch (error) {
+      toast.error("" + error);
+    }
+  };
+
   return (
     <>
       <section className="flex flex-col md:flex-row h-screen items-center">
@@ -17,15 +36,16 @@ const Login = (): JSX.Element => {
             <h1 className="text-xl md:text-2xl font-bold leading-tight mt-12 text-[#333333]">
               Log In
             </h1>
-            <form className="mt-6" action="#" method="POST">
+            <form className="mt-6" onSubmit={handleLogin}>
               <div>
                 <label className="block text-[#666666]">Email</label>
                 <input
                   type="email"
-                  name=""
-                  id=""
+                  value={email}
+                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,63}$"
                   placeholder="Your email here.."
                   className="w-full px-4 py-3 rounded-lg mt-2 border"
+                  onChange={(e) => setEmail(e.target.value)}
                   required
                 />
               </div>
@@ -34,10 +54,10 @@ const Login = (): JSX.Element => {
                 <label className="block text-[#666666]">Password</label>
                 <input
                   type="password"
-                  name=""
-                  id=""
+                  value={password}
                   placeholder="Your password here.."
                   className="w-full px-4 py-3 rounded-lg mt-2 border"
+                  onChange={(e) => setPassword(e.target.value)}
                   required
                 />
               </div>

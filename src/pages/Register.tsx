@@ -6,6 +6,7 @@ import sideImage from "../assets/image.png";
 import logo from "../assets/image 5.png";
 import { useAuth } from "../stores/AuthContext";
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 const Register = (): JSX.Element => {
   const { register } = useAuth();
@@ -18,18 +19,18 @@ const Register = (): JSX.Element => {
 
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("masu");
     try {
       if (password === confirmPassword) {
-        register(name, email, password);
+        await register(name, email, password);
         navigate("/");
       } else {
-        alert("pass doesnt match");
+        throw new Error("Password doesn't match");
       }
     } catch (error) {
-      console.error("Server error");
+      toast.error("" + error);
     }
   };
+
   return (
     <>
       <section className="flex flex-col md:flex-row h-screen items-center">

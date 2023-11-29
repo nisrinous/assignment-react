@@ -1,4 +1,5 @@
 import { ReactNode, createContext, useContext, useState } from "react";
+import toast from "react-hot-toast";
 import Cookies from "universal-cookie";
 import { v4 as uuidv4 } from "uuid";
 
@@ -47,7 +48,7 @@ export const AuthProvider = ({
         throw new Error("Failed to fetch users");
       }
     } catch (error) {
-      console.error("Error fetching users:", error);
+      throw error;
       return [];
     }
   };
@@ -57,7 +58,7 @@ export const AuthProvider = ({
     return randomString;
   };
 
-  const login = async (email: string, password: string) => {
+  const login = async (email: string, password: string): Promise<void> => {
     setIsLoading(true);
     try {
       const users = await fetchUsers();
@@ -73,13 +74,19 @@ export const AuthProvider = ({
         throw new Error("Invalid credentials");
       }
     } catch (error) {
-      console.error("Error logging in:", error);
+      throw error;
+    } finally {
+      setIsLoading(false);
     }
 
     setIsLoading(false);
   };
 
-  const register = async (name: string, email: string, password: string) => {
+  const register = async (
+    name: string,
+    email: string,
+    password: string
+  ): Promise<void> => {
     setIsLoading(true);
     try {
       const users = await fetchUsers();
@@ -117,7 +124,7 @@ export const AuthProvider = ({
         }
       }
     } catch (error) {
-      console.error("Error registering user:", error);
+      throw error;
     }
 
     setIsLoading(false);
