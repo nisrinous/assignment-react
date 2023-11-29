@@ -20,8 +20,9 @@ For this assignment, your task is to develop a web application on the admin side
   - Project description
   - How to setup and run project
   - _Screenshot of the App (don't forget to resize the image)_
-- Make all testing on **Product Detail page**
+- Only use libraries or frameworks mentioned in this document.
 - Submit your project by making a merge request (MR) from **dev** to **master** branch, don't merge it by yourself! Please also attach screenshots of test coverage on your MR description
+- Make all testing on **Product Detail page**
 - **Finish all the requirements** then do the unit test coverage
 
 ## Features
@@ -125,6 +126,7 @@ For this assignment, your task is to develop a web application on the admin side
         - Important to Note
    2. `[medium]` Show product images and can change the image by clicking on the product images list
    3. `[easy]` The back button will navigate to the Product List page
+   4. `[medium]` Testing with 100% coverage **Product Detail page**
 8. Edit Product Page
    1. `[medium]` The form will be the same with Add new product multi steps form
    2. `[hard]` When each form rendered, all of the existing data will be filled in each fields
