@@ -3,7 +3,7 @@ import ButtonPrimary from "./ButtonPrimary";
 export default function Aside(): JSX.Element {
   return (
     <div className="fixed">
-      <div className="flex items-center max-w-64 h-screen bg-white">
+      <div className="flex items-center max-w-64 h-screen bg-white border-none">
         <div className="md:hidden flex flex-col items-center w-24 h-full overflow-hidden text-gray-700 rounded-tr-2xl rounded-br-xl bg-[#F1DDC9]">
           <a className="flex items-center w-full h-20 px-3" href="/">
             <span className="ml-2 text-sm font-bold border-b-[#D84727] text-[#333] ">

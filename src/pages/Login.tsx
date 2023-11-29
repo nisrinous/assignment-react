@@ -50,7 +50,7 @@ const Login = (): JSX.Element => {
 
               <button
                 type="submit"
-                className="w-full block bg-[#D84727] hover:bg-[#D84727] text-white font-semibold rounded-lg px-4 py-3 mt-11"
+                className="w-full block bg-[#D84727] hover:bg-red-700 text-white font-semibold rounded-lg px-4 py-3 mt-11"
               >
                 Log In
               </button>
@@ -60,7 +60,7 @@ const Login = (): JSX.Element => {
                 Don't have an account?{" "}
                 <span
                   onClick={() => navigate("/register")}
-                  className="font-semibold hover:cursor-pointer"
+                  className="font-semibold cursor-pointer"
                 >
                   Sign Up here
                 </span>

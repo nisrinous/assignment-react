@@ -1,20 +1,13 @@
-import {
-  ReactNode,
-  createContext,
-  useContext,
-  useEffect,
-  useState,
-} from 'react';
+import { ReactNode, createContext, useContext, useState } from "react";
+import Cookies from "universal-cookie";
 
 export interface AuthContextType {
+  name: string | null;
   email: string | null;
-  user: string | null;
   password: string | null;
-  walletId: number | null;
-  walletNumber: string | null;
-  login: (username: string, password: string) => void;
-  logout: () => void;
+  login: (email: string, password: string) => void;
   register: (email: string, username: string, password: string) => void;
+  logout: () => void;
   isLoading: boolean;
 }
 interface AuthContextProviderProps {
@@ -22,131 +15,125 @@ interface AuthContextProviderProps {
 }
 
 export const AuthContext = createContext<AuthContextType | undefined>(
-  undefined,
+  undefined
 );
 
 export const AuthProvider = ({
   children,
 }: AuthContextProviderProps): JSX.Element => {
-  const [token, setToken] = useState<string | null>('');
+  const cookies = new Cookies();
+  const [token, setToken] = useState<string | null>("");
+
+  const [name, setName] = useState<string | null>(null);
   const [email, setEmail] = useState<string | null>(null);
-
-  const [user, setUser] = useState<string | null>(null);
   const [password, setPassword] = useState<string | null>(null);
-  const [walletId, setWalletId] = useState<number | null>(null);
-  const [walletNumber, setWalletNumber] = useState<string | null>(null);
-
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const login = async (username: string, password: string) => {
-    setIsLoading(true);
+  const setAuthToken = (token: string): void => {
+    cookies.set("authToken", token, { path: "/" });
+  };
+
+  const removeAuthToken = (): void => {
+    cookies.remove("authToken", { path: "/" });
+    console.log(cookies.getAll());
+  };
+
+  const fetchUsers = async () => {
     try {
-      const response = await fetch(
-        `https://ewallet-dockerize.fly.dev/auth/sessions`,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-
-          body: JSON.stringify({
-            email: username,
-            password: password,
-          }),
-        },
-      );
-
+      const response = await fetch("http://localhost:3000/users");
       if (response.ok) {
-        const data = await response.json();
-        if (data.message === 'success') {
-          setUser(username);
-          setPassword(password);
-          setToken(data.data.token);
-          localStorage.setItem('user', username);
-          localStorage.setItem('token', data.data.token);
-        } else {
-          throw new Error(data.message);
-        }
+        const users = await response.json();
+        return users;
       } else {
-        throw new Error('Failed to fetch user data');
+        throw new Error("Failed to fetch users");
       }
     } catch (error) {
-      console.error('Error fetching user data:', error);
+      console.error("Error fetching users:", error);
+      return [];
+    }
+  };
+
+  const login = async (email: string, password: string) => {
+    setIsLoading(true);
+    try {
+      const users = await fetchUsers();
+      const user = users.find(
+        (user: any) => user.email === email && user.password === password
+      );
+
+      if (user) {
+        setEmail(email);
+        setPassword(password);
+        setAuthToken("generatedToken");
+      } else {
+        throw new Error("Invalid credentials");
+      }
+    } catch (error) {
+      console.error("Error logging in:", error);
     }
 
     setIsLoading(false);
   };
 
-  const register = async (
-    email: string,
-    username: string,
-    password: string,
-  ) => {
+  const register = async (name: string, email: string, password: string) => {
     setIsLoading(true);
     try {
-      const response = await fetch(
-        `https://ewallet-dockerize.fly.dev/auth/users`,
-        {
-          method: 'POST',
+      const users = await fetchUsers();
+
+      const existingUser = users.find((user: any) => user.email === email);
+
+      if (existingUser) {
+        throw new Error("Email already exists");
+      } else {
+        const newUserId = users.length + 1;
+        const newUser = {
+          id: newUserId,
+          name: name,
+          email: email,
+          password: password,
+        };
+
+        const response = await fetch(`http://localhost:3000/users`, {
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
 
-          body: JSON.stringify({
-            email: email,
-            username: username,
-            password: password,
-          }),
-        },
-      );
+          body: JSON.stringify(newUser),
+        });
 
-      if (response.ok) {
-        const data = await response.json();
-        if (data.message === 'success') {
-          setEmail(data.data.email);
-          setUser(data.data.username);
-          setPassword(password);
-          setWalletId(data.data.wallet_id);
-          setWalletNumber(data.data.wallet_number);
-          localStorage.setItem('user', username);
-          localStorage.setItem('password', password);
+        if (response.ok) {
+          setName(newUser.name);
+          setEmail(newUser.email);
+          setPassword(newUser.password);
+          setAuthToken("generatedToken");
         } else {
-          throw new Error(data.message);
+          throw new Error("Failed to register user");
         }
-      } else {
-        throw new Error('Failed to fetch user data');
       }
     } catch (error) {
-      console.error('Error fetching user data:', error);
+      console.error("Error registering user:", error);
     }
 
     setIsLoading(false);
   };
-
-  useEffect(() => {
-    const storedUser = localStorage.getItem('user');
-
-    if (storedUser) {
-      setUser(storedUser);
-    }
-  }, []);
 
   const logout = () => {
-    localStorage.removeItem('user');
-    setUser(null);
+    removeAuthToken();
+    setName(null);
+    setEmail(null);
+    setPassword(null);
   };
 
   return (
     <AuthContext.Provider
       value={{
         email,
-        user,
+        name,
         password,
-        walletId,
-        walletNumber,
         login,
-        logout,
         register,
+        logout,
         isLoading,
       }}
     >
@@ -158,7 +145,7 @@ export const AuthProvider = ({
 export const useAuth = (): AuthContextType => {
   const context = useContext(AuthContext);
   if (!context) {
-    throw new Error('This is error');
+    throw new Error("This is error");
   }
   return context;
 };

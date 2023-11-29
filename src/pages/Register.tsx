@@ -68,18 +68,18 @@ const Register = (): JSX.Element => {
                 type="submit"
                 className="w-full block bg-red-600 hover:bg-red-700 text-white font-semibold rounded-lg px-4 py-3 mt-11"
               >
-                Log In
+                Sign Up
               </button>
             </form>
             <div className="my-11">
               <p>
                 Have an account?{" "}
-                <a
+                <span
                   onClick={() => navigate("/")}
                   className="font-semibold hover:cursor-pointer"
                 >
                   Log In here
-                </a>
+                </span>
               </p>
             </div>
           </div>
