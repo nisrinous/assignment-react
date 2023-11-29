@@ -8,7 +8,7 @@ export default function AddProductContentDetail(): JSX.Element {
           <MainHeadline title="Detail" isSupportingContent={false} />
           <form action="#" method="POST">
             <div className="my-6">
-              <label className="block text-[#666666]">Material</label>
+              <label className="block text-[#666]">Material</label>
               <textarea
                 name=""
                 id=""
@@ -18,7 +18,7 @@ export default function AddProductContentDetail(): JSX.Element {
               />
             </div>
             <div className="my-6">
-              <label className="block text-xl text-[#666666]">Case</label>
+              <label className="block text-xl text-[#666]">Case</label>
               <textarea
                 name=""
                 id=""
@@ -28,7 +28,7 @@ export default function AddProductContentDetail(): JSX.Element {
               />
             </div>
             <div className="my-6">
-              <label className="block text-xl text-[#666666]">Movement</label>
+              <label className="block text-xl text-[#666]">Movement</label>
               <textarea
                 name=""
                 id=""
@@ -38,7 +38,7 @@ export default function AddProductContentDetail(): JSX.Element {
               />
             </div>
             <div className="my-6">
-              <label className="block text-xl text-[#666666]">Dial</label>
+              <label className="block text-xl text-[#666]">Dial</label>
               <textarea
                 name=""
                 id=""
@@ -48,7 +48,7 @@ export default function AddProductContentDetail(): JSX.Element {
               />
             </div>
             <div className="my-6">
-              <label className="block text-xl text-[#666666]">Hand</label>
+              <label className="block text-xl text-[#666]">Hand</label>
               <textarea
                 name=""
                 id=""
@@ -58,7 +58,7 @@ export default function AddProductContentDetail(): JSX.Element {
               />
             </div>
             <div className="my-6">
-              <label className="block text-xl text-[#666666]">
+              <label className="block text-xl text-[#666]">
                 Important Note
               </label>
               <textarea

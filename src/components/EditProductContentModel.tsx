@@ -9,7 +9,7 @@ export default function EditProductContentModel(): JSX.Element {
           <MainHeadline title="Model" isSupportingContent={false} />
           <form action="#" method="POST">
             <div className="my-6">
-              <label className="block text-[#666666]">Model Name</label>
+              <label className="block text-[#666]">Model Name</label>
               <input
                 type="email"
                 name=""
@@ -20,13 +20,11 @@ export default function EditProductContentModel(): JSX.Element {
               />
             </div>
             <div className="my-6">
-              <label className="block text-xl text-[#666666]">
-                Product Image
-              </label>
+              <label className="block text-xl text-[#666]">Product Image</label>
               <input type="file"></input>
             </div>
             <div className="my-6">
-              <label className="block text-[#666666]">Stock</label>
+              <label className="block text-[#666]">Stock</label>
               <input
                 type="email"
                 name=""

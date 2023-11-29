@@ -5,7 +5,7 @@ export default function AddProductContentNew(): JSX.Element {
         <div className="flex flex-col items-left justify-start rounded-xl">
           <form action="#" method="POST">
             <div className="my-6">
-              <label className="block text-[#666666]">Product Name</label>
+              <label className="block text-[#666]">Product Name</label>
               <input
                 type="text"
                 name=""
@@ -17,7 +17,7 @@ export default function AddProductContentNew(): JSX.Element {
             </div>
             <div className="my-6 flex flex-row justify-between">
               <div>
-                <label className="block text-xl text-[#666666]">Price</label>
+                <label className="block text-xl text-[#666]">Price</label>
                 <input
                   type="text"
                   name=""
@@ -28,7 +28,7 @@ export default function AddProductContentNew(): JSX.Element {
                 />
               </div>
               <div>
-                <label className="block text-xl text-[#666666]">Discount</label>
+                <label className="block text-xl text-[#666]">Discount</label>
                 <input
                   type="text"
                   name=""
@@ -41,7 +41,7 @@ export default function AddProductContentNew(): JSX.Element {
             </div>
             <div className="my-6 flex flex-row justify-between">
               <div>
-                <label className="block text-xl text-[#666666]">Weight</label>
+                <label className="block text-xl text-[#666]">Weight</label>
                 <input
                   type="text"
                   name=""
@@ -52,7 +52,7 @@ export default function AddProductContentNew(): JSX.Element {
                 />
               </div>
               <div>
-                <label className="block text-xl text-[#666666]">Length</label>
+                <label className="block text-xl text-[#666]">Length</label>
                 <input
                   type="text"
                   name=""
@@ -63,7 +63,7 @@ export default function AddProductContentNew(): JSX.Element {
                 />
               </div>
               <div>
-                <label className="block text-xl text-[#666666]">Width</label>
+                <label className="block text-xl text-[#666]">Width</label>
                 <input
                   type="text"
                   name=""
@@ -75,7 +75,7 @@ export default function AddProductContentNew(): JSX.Element {
               </div>
             </div>
             <div className="my-6">
-              <label className="block text-[#666666]">Category</label>
+              <label className="block text-[#666]">Category</label>
               <select
                 name=""
                 id=""
