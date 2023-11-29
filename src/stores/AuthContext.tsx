@@ -1,5 +1,6 @@
 import { ReactNode, createContext, useContext, useState } from "react";
 import Cookies from "universal-cookie";
+import { v4 as uuidv4 } from "uuid";
 
 export interface AuthContextType {
   name: string | null;
@@ -22,8 +23,6 @@ export const AuthProvider = ({
   children,
 }: AuthContextProviderProps): JSX.Element => {
   const cookies = new Cookies();
-  const [token, setToken] = useState<string | null>("");
-
   const [name, setName] = useState<string | null>(null);
   const [email, setEmail] = useState<string | null>(null);
   const [password, setPassword] = useState<string | null>(null);
@@ -51,6 +50,11 @@ export const AuthProvider = ({
       console.error("Error fetching users:", error);
       return [];
     }
+  };
+
+  const generateRandomToken = (): string => {
+    const randomString = uuidv4();
+    return randomString;
   };
 
   const login = async (email: string, password: string) => {
@@ -91,6 +95,7 @@ export const AuthProvider = ({
           name: name,
           email: email,
           password: password,
+          token: generateRandomToken(),
         };
 
         const response = await fetch(`http://localhost:3000/users`, {

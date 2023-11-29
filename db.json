@@ -19,19 +19,30 @@
           "name": "cream",
           "picture": "image url from cloudinary",
           "qty": 20,
-          "photos": ["image url from cloudinary", "image url from cloudinary"]
+          "photos": [
+            "image url from cloudinary",
+            "image url from cloudinary"
+          ]
         },
         {
           "name": "jati",
           "picture": "image url from cloudinary",
           "qty": 10,
-          "photos": ["image url from cloudinary", "image url from cloudinary"]
+          "photos": [
+            "image url from cloudinary",
+            "image url from cloudinary"
+          ]
         }
       ]
     }
   ],
   "users": [
-    { "id": 1, "name": "piu", "email": "piu@mail.com", "password": "pass" },
-    { "id": 2, "name": "poo", "email": "poo@mail.com", "password": "pass" }
+    {
+      "id": 1,
+      "name": "piu",
+      "email": "piu@mail.com",
+      "password": "pass",
+      "token": "8733e376-38c3-4242-bed6-5a0db9927504"
+    }
   ]
 }

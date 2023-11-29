@@ -4,9 +4,32 @@ import Brand from "../components/Brand";
 
 import sideImage from "../assets/image.png";
 import logo from "../assets/image 5.png";
+import { useAuth } from "../stores/AuthContext";
+import { useState } from "react";
 
 const Register = (): JSX.Element => {
+  const { register } = useAuth();
   const navigate = useNavigate();
+
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  const handleRegister = async (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log("masu");
+    try {
+      if (password === confirmPassword) {
+        register(name, email, password);
+        navigate("/");
+      } else {
+        alert("pass doesnt match");
+      }
+    } catch (error) {
+      console.error("Server error");
+    }
+  };
   return (
     <>
       <section className="flex flex-col md:flex-row h-screen items-center">
@@ -17,15 +40,15 @@ const Register = (): JSX.Element => {
             <h1 className="text-xl md:text-2xl font-bold leading-tight mt-12">
               Sign Up
             </h1>
-            <form className="mt-6" action="#" method="POST">
+            <form className="mt-6" onSubmit={handleRegister}>
               <div className="mt-6">
                 <label className="block text-gray-700">Full Name</label>
                 <input
-                  type="email"
-                  name=""
-                  id=""
+                  type="text"
+                  value={name}
                   placeholder="Your full name here.."
                   className="w-full px-4 py-3 rounded-lg mt-2 border"
+                  onChange={(e) => setName(e.target.value)}
                   required
                 />
               </div>
@@ -33,10 +56,10 @@ const Register = (): JSX.Element => {
                 <label className="block text-gray-700">Email</label>
                 <input
                   type="email"
-                  name=""
-                  id=""
+                  value={email}
                   placeholder="Your email here.."
                   className="w-full px-4 py-3 rounded-lg mt-2 border"
+                  onChange={(e) => setEmail(e.target.value)}
                   required
                 />
               </div>
@@ -45,10 +68,10 @@ const Register = (): JSX.Element => {
                 <label className="block text-gray-700">Password</label>
                 <input
                   type="password"
-                  name=""
-                  id=""
+                  value={password}
                   placeholder="Your password here.."
                   className="w-full px-4 py-3 rounded-lg mt-2 border"
+                  onChange={(e) => setPassword(e.target.value)}
                   required
                 />
               </div>
@@ -56,10 +79,10 @@ const Register = (): JSX.Element => {
                 <label className="block text-gray-700">Confirm Password</label>
                 <input
                   type="password"
-                  name=""
-                  id=""
+                  value={confirmPassword}
                   placeholder="Confirmation password.."
                   className="w-full px-4 py-3 rounded-lg mt-2 border"
+                  onChange={(e) => setConfirmPassword(e.target.value)}
                   required
                 />
               </div>
