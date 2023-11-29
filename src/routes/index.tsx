@@ -1,4 +1,4 @@
-import { useRoutes } from "react-router-dom";
+import { Navigate, useRoutes } from "react-router-dom";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import AddProduct from "../pages/AddProduct";
@@ -24,11 +24,11 @@ export const AppRoute = (): JSX.Element => {
     },
     {
       path: "/product/add",
-      element: email && <AddProduct />,
+      element: email ? <AddProduct /> : <Navigate to="/" replace />,
     },
     {
       path: "/product/:id/edit",
-      element: email && <EditProduct />,
+      element: email ? <EditProduct /> : <Navigate to="/" replace />,
     },
     {
       path: "*",
