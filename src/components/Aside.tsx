@@ -1,9 +1,11 @@
+import ButtonPrimary from "./ButtonPrimary";
+
 export default function Aside(): JSX.Element {
   return (
     <div className="fixed">
       <div className="flex items-center max-w-64 h-screen bg-white">
         <div className="md:hidden flex flex-col items-center w-24 h-full overflow-hidden text-gray-700 rounded-tr-2xl rounded-br-xl bg-[#F1DDC9]">
-          <a className="flex items-center w-full h-20 px-3" href="/dashboard">
+          <a className="flex items-center w-full h-20 px-3" href="/">
             <span className="ml-2 text-sm font-bold border-b-[#D84727] text-[#333] ">
               Matoa Admin
             </span>
@@ -11,7 +13,7 @@ export default function Aside(): JSX.Element {
           <div className="flex flex-col items-center top-0 bottom-0 mt-auto mb-auto ">
             <a
               className="flex items-center justify-center w-12 h-12 mt-2 rounded "
-              href="/dashboard"
+              href="/"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -28,7 +30,7 @@ export default function Aside(): JSX.Element {
             </a>
             <a
               className="flex items-center justify-center w-12 h-12 mt-2 rounded "
-              href="/dashboard"
+              href="/"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -45,7 +47,7 @@ export default function Aside(): JSX.Element {
             </a>
             <a
               className="flex items-center justify-center w-12 h-12 mt-2 rounded "
-              href="/dashboard"
+              href="/"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -62,7 +64,7 @@ export default function Aside(): JSX.Element {
             </a>
             <a
               className="flex items-center justify-center w-12 h-12 mt-2 rounded "
-              href="/dashboard"
+              href="/"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -79,7 +81,7 @@ export default function Aside(): JSX.Element {
             </a>
             <a
               className="flex items-center justify-center w-12 h-12 mt-2 rounded "
-              href="/dashboard"
+              href="/"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -97,7 +99,7 @@ export default function Aside(): JSX.Element {
           </div>
           <a
             className="flex items-center justify-center w-16 h-16 mt-auto"
-            href="/dashboard"
+            href="/"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -116,7 +118,7 @@ export default function Aside(): JSX.Element {
         <div className="hidden md:flex flex-col items-center w-64 h-full overflow-hidden text-gray-700 rounded-tr-2xl rounded-br-xl bg-[#F1DDC9]">
           <a
             className="flex items-center justify-center w-full h-20 px-3 my-10"
-            href="/dashboard"
+            href="/"
           >
             <span className="ml-2 text-2xl border-b-[#D84727] border text-[#333] ">
               Matoa Admin
@@ -126,7 +128,7 @@ export default function Aside(): JSX.Element {
             <div className="flex flex-col items-center w-full">
               <a
                 className="flex items-center justify-center w-full h-12 px-3 rounded "
-                href="/dashboard"
+                href="/"
               >
                 <span className="ml-5 text-medium font-bold  text-[#333] hover:text-[#D84727]">
                   {" "}
@@ -136,7 +138,7 @@ export default function Aside(): JSX.Element {
 
               <a
                 className="flex items-center justify-center w-full h-12 px-3 -2 rounded "
-                href="/dashboard"
+                href="/"
               >
                 <span className="ml-5 text-medium font-bold  text-[#333] hover:text-[#D84727]">
                   {" "}
@@ -155,6 +157,7 @@ export default function Aside(): JSX.Element {
               </a>
             </div>
           </div>
+          <ButtonPrimary text="LOGOUT" />
         </div>
       </div>
     </div>

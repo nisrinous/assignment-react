@@ -2,6 +2,7 @@ import { useRoutes } from "react-router-dom";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import AddProduct from "../pages/AddProduct";
+import ProductList from "../pages/ProductList";
 
 export const AppRoute = (): JSX.Element => {
   const routes = useRoutes([
@@ -16,6 +17,10 @@ export const AppRoute = (): JSX.Element => {
     {
       path: "/product/add",
       element: <AddProduct />,
+    },
+    {
+      path: "/product",
+      element: <ProductList />,
     },
   ]);
   return <>{routes}</>;

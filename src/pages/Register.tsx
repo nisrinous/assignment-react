@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import SideImage from "../components/SideImage";
 import Brand from "../components/Brand";
 
@@ -6,6 +6,7 @@ import sideImage from "../assets/image.png";
 import logo from "../assets/image 5.png";
 
 const Register = (): JSX.Element => {
+  const navigate = useNavigate();
   return (
     <>
       <section className="flex flex-col md:flex-row h-screen items-center">
@@ -24,7 +25,7 @@ const Register = (): JSX.Element => {
                   name=""
                   id=""
                   placeholder="Your full name here.."
-                  className="w-full px-4 py-3 rounded-lgmt-2 border"
+                  className="w-full px-4 py-3 rounded-lg mt-2 border"
                   required
                 />
               </div>
@@ -35,7 +36,7 @@ const Register = (): JSX.Element => {
                   name=""
                   id=""
                   placeholder="Your email here.."
-                  className="w-full px-4 py-3 rounded-lgmt-2 border"
+                  className="w-full px-4 py-3 rounded-lg mt-2 border"
                   required
                 />
               </div>
@@ -47,7 +48,7 @@ const Register = (): JSX.Element => {
                   name=""
                   id=""
                   placeholder="Your password here.."
-                  className="w-full px-4 py-3 rounded-lgmt-2 border"
+                  className="w-full px-4 py-3 rounded-lg mt-2 border"
                   required
                 />
               </div>
@@ -58,7 +59,7 @@ const Register = (): JSX.Element => {
                   name=""
                   id=""
                   placeholder="Confirmation password.."
-                  className="w-full px-4 py-3 rounded-lgmt-2 border"
+                  className="w-full px-4 py-3 rounded-lg mt-2 border"
                   required
                 />
               </div>
@@ -73,7 +74,10 @@ const Register = (): JSX.Element => {
             <div className="my-11">
               <p>
                 Have an account?{" "}
-                <a href="/" className="font-semibold">
+                <a
+                  onClick={() => navigate("/")}
+                  className="font-semibold hover:cursor-pointer"
+                >
                   Log In here
                 </a>
               </p>

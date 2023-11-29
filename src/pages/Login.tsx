@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import SideImage from "../components/SideImage";
 import Brand from "../components/Brand";
 
@@ -6,6 +6,7 @@ import sideImage from "../assets/image.png";
 import logo from "../assets/image 5.png";
 
 const Login = (): JSX.Element => {
+  const navigate = useNavigate();
   return (
     <>
       <section className="flex flex-col md:flex-row h-screen items-center">
@@ -24,7 +25,7 @@ const Login = (): JSX.Element => {
                   name=""
                   id=""
                   placeholder="Your email here.."
-                  className="w-full px-4 py-3 rounded-lgmt-2 border"
+                  className="w-full px-4 py-3 rounded-lg mt-2 border"
                   required
                 />
               </div>
@@ -36,7 +37,7 @@ const Login = (): JSX.Element => {
                   name=""
                   id=""
                   placeholder="Your password here.."
-                  className="w-full px-4 py-3 rounded-lgmt-2 border"
+                  className="w-full px-4 py-3 rounded-lg mt-2 border"
                   required
                 />
               </div>
@@ -57,9 +58,12 @@ const Login = (): JSX.Element => {
             <div className="my-11 text-[#333333]">
               <p>
                 Don't have an account?{" "}
-                <a href="/register" className="font-semibold">
+                <span
+                  onClick={() => navigate("/register")}
+                  className="font-semibold hover:cursor-pointer"
+                >
                   Sign Up here
-                </a>
+                </span>
               </p>
             </div>
           </div>
