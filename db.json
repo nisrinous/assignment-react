@@ -1,0 +1,37 @@
+{
+  "posts": [
+    {
+      "name": "Product name",
+      "price": 200000,
+      "weight": 10,
+      "width": 10,
+      "length": 10,
+      "category": "1",
+      "discount": 0,
+      "caseDetail": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+      "dial": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+      "hand": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+      "material": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+      "importantNote": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+      "movement": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+      "model": [
+        {
+          "name": "cream",
+          "picture": "image url from cloudinary",
+          "qty": 20,
+          "photos": ["image url from cloudinary", "image url from cloudinary"]
+        },
+        {
+          "name": "jati",
+          "picture": "image url from cloudinary",
+          "qty": 10,
+          "photos": ["image url from cloudinary", "image url from cloudinary"]
+        }
+      ]
+    }
+  ],
+  "users": [
+    { "id": 1, "name": "piu", "email": "piu@mail.com", "password": "pass" },
+    { "id": 2, "name": "poo", "email": "poo@mail.com", "password": "pass" }
+  ]
+}
