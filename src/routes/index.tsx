@@ -2,6 +2,7 @@ import { useRoutes } from "react-router-dom";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import AddProduct from "../pages/AddProduct";
+import ProductList from "../pages/ProductList";
 import EditProduct from "@/pages/EditProduct";
 
 export const AppRoute = (): JSX.Element => {
@@ -13,6 +14,10 @@ export const AppRoute = (): JSX.Element => {
     {
       path: "/register",
       element: <Register />,
+    },
+    {
+      path: "/product",
+      element: <ProductList />,
     },
     {
       path: "/product/add",

@@ -8,7 +8,7 @@ export default function ProductList(): JSX.Element {
     <>
       <Aside />
       <MainLayout>
-        <MainHeader title="PRODUCT LIST" />
+        <MainHeader>PRODUCT LIST</MainHeader>
         <ProductListTable />
       </MainLayout>
     </>
