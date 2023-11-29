@@ -30,7 +30,7 @@ const AddProduct = (): JSX.Element => {
     <>
       <Aside />
       <MainLayout>
-        <MainHeader title="ADD NEW PRODUCT" />
+        <MainHeader>ADD NEW PRODUCT {currentPage}/3</MainHeader>
         {currentPage === 1 && (
           <>
             <AddProductContentNew />

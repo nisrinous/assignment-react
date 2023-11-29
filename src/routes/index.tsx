@@ -15,12 +15,12 @@ export const AppRoute = (): JSX.Element => {
       element: <Register />,
     },
     {
-      path: "/product/add",
-      element: <AddProduct />,
-    },
-    {
       path: "/product",
       element: <ProductList />,
+    },
+    {
+      path: "/product/add",
+      element: <AddProduct />,
     },
   ]);
   return <>{routes}</>;
