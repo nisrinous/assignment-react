@@ -3,9 +3,12 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import AddProduct from "../pages/AddProduct";
 import ProductList from "../pages/ProductList";
-import EditProduct from "@/pages/EditProduct";
+import EditProduct from "../pages/EditProduct";
+import { useAuth } from "../stores/AuthContext";
+import NotFound from "../pages/NotFound";
 
 export const AppRoute = (): JSX.Element => {
+  const { email } = useAuth();
   const routes = useRoutes([
     {
       path: "/",
@@ -21,11 +24,15 @@ export const AppRoute = (): JSX.Element => {
     },
     {
       path: "/product/add",
-      element: <AddProduct />,
+      element: email && <AddProduct />,
     },
     {
       path: "/product/:id/edit",
-      element: <EditProduct />,
+      element: email && <EditProduct />,
+    },
+    {
+      path: "*",
+      element: <NotFound />,
     },
   ]);
   return <>{routes}</>;
