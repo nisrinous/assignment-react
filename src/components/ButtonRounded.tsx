@@ -9,7 +9,7 @@ export default function ButtonRounded({
 }): JSX.Element {
   return (
     <button
-      className="bg-[#D84727] text-white active:bg-indigo-600 text-xs px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+      className="bg-[#D84727] text-white text-sm px-3 py-2 rounded-lg"
       onClick={action}
     >
       <a href={target}>{text}</a>

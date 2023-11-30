@@ -61,7 +61,7 @@ export default function Aside(): JSX.Element {
               </a>
             </div>
           </div>
-          <ButtonPrimary text="LOGOUT" action={logout} target="/auth/login" />
+          <ButtonPrimary text="LOGOUT" action={logout} />
         </div>
       </div>
     </div>

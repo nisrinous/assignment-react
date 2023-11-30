@@ -12,6 +12,10 @@ export const AppRoute = (): JSX.Element => {
 
   const routes = useRoutes([
     {
+      path: "/",
+      element: <Navigate to="/product" />,
+    },
+    {
       path: "/auth/login",
       element:
         localToken === null ? <Login /> : <Navigate to="/product" replace />,

@@ -3,7 +3,6 @@ import Cookies from "universal-cookie";
 import { v4 as uuidv4 } from "uuid";
 
 export interface AuthContextType {
-  token: string | null;
   login: (email: string, password: string) => void;
   register: (email: string, username: string, password: string) => void;
   logout: () => void;
@@ -21,7 +20,6 @@ export const AuthProvider = ({
   children,
 }: AuthContextProviderProps): JSX.Element => {
   const cookies = new Cookies();
-  const [token, setToken] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const setAuthToken = (token: string): void => {
@@ -63,7 +61,6 @@ export const AuthProvider = ({
       if (user) {
         setAuthToken("generatedToken");
         localStorage.setItem("token", user.token);
-        setToken(localStorage.getItem("token"));
       } else {
         throw new Error("Invalid credentials");
       }
@@ -110,7 +107,6 @@ export const AuthProvider = ({
         if (response.ok) {
           setAuthToken("generatedToken");
           localStorage.setItem("token", generatedToken);
-          setToken(localStorage.getItem("token"));
         } else {
           throw new Error("Failed to register user");
         }
@@ -124,14 +120,12 @@ export const AuthProvider = ({
 
   const logout = () => {
     removeAuthToken();
-    setToken(null);
     localStorage.removeItem("token");
   };
 
   return (
     <AuthContext.Provider
       value={{
-        token,
         login,
         register,
         logout,
