@@ -1,12 +1,9 @@
 import { ReactNode, createContext, useContext, useState } from "react";
-import toast from "react-hot-toast";
 import Cookies from "universal-cookie";
 import { v4 as uuidv4 } from "uuid";
 
 export interface AuthContextType {
-  name: string | null;
-  email: string | null;
-  password: string | null;
+  token: string | null;
   login: (email: string, password: string) => void;
   register: (email: string, username: string, password: string) => void;
   logout: () => void;
@@ -24,9 +21,7 @@ export const AuthProvider = ({
   children,
 }: AuthContextProviderProps): JSX.Element => {
   const cookies = new Cookies();
-  const [name, setName] = useState<string | null>(null);
-  const [email, setEmail] = useState<string | null>(null);
-  const [password, setPassword] = useState<string | null>(null);
+  const [token, setToken] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const setAuthToken = (token: string): void => {
@@ -49,7 +44,6 @@ export const AuthProvider = ({
       }
     } catch (error) {
       throw error;
-      return [];
     }
   };
 
@@ -67,9 +61,9 @@ export const AuthProvider = ({
       );
 
       if (user) {
-        setEmail(email);
-        setPassword(password);
         setAuthToken("generatedToken");
+        localStorage.setItem("token", user.token);
+        setToken(localStorage.getItem("token"));
       } else {
         throw new Error("Invalid credentials");
       }
@@ -96,13 +90,12 @@ export const AuthProvider = ({
       if (existingUser) {
         throw new Error("Email already exists");
       } else {
-        const newUserId = users.length + 1;
+        const generatedToken = generateRandomToken();
         const newUser = {
-          id: newUserId,
           name: name,
           email: email,
           password: password,
-          token: generateRandomToken(),
+          token: generatedToken,
         };
 
         const response = await fetch(`http://localhost:3000/users`, {
@@ -115,10 +108,9 @@ export const AuthProvider = ({
         });
 
         if (response.ok) {
-          setName(newUser.name);
-          setEmail(newUser.email);
-          setPassword(newUser.password);
           setAuthToken("generatedToken");
+          localStorage.setItem("token", generatedToken);
+          setToken(localStorage.getItem("token"));
         } else {
           throw new Error("Failed to register user");
         }
@@ -132,17 +124,14 @@ export const AuthProvider = ({
 
   const logout = () => {
     removeAuthToken();
-    setName(null);
-    setEmail(null);
-    setPassword(null);
+    setToken(null);
+    localStorage.removeItem("token");
   };
 
   return (
     <AuthContext.Provider
       value={{
-        email,
-        name,
-        password,
+        token,
         login,
         register,
         logout,

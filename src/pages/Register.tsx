@@ -22,7 +22,7 @@ const Register = (): JSX.Element => {
     try {
       if (password === confirmPassword) {
         await register(name, email, password);
-        navigate("/");
+        navigate("/auth/login");
       } else {
         throw new Error("Password doesn't match");
       }
@@ -43,7 +43,7 @@ const Register = (): JSX.Element => {
             </h1>
             <form className="mt-6" onSubmit={handleRegister}>
               <div className="mt-6">
-                <label className="block text-gray-700">Full Name</label>
+                <label className="block text-[#333]">Full Name</label>
                 <input
                   type="text"
                   value={name}
@@ -54,7 +54,7 @@ const Register = (): JSX.Element => {
                 />
               </div>
               <div className="mt-6">
-                <label className="block text-gray-700">Email</label>
+                <label className="block text-[#333]">Email</label>
                 <input
                   type="email"
                   value={email}
@@ -66,7 +66,7 @@ const Register = (): JSX.Element => {
               </div>
 
               <div className="mt-6">
-                <label className="block text-gray-700">Password</label>
+                <label className="block text-[#333]">Password</label>
                 <input
                   type="password"
                   value={password}
@@ -77,7 +77,7 @@ const Register = (): JSX.Element => {
                 />
               </div>
               <div className="mt-6">
-                <label className="block text-gray-700">Confirm Password</label>
+                <label className="block text-[#333]">Confirm Password</label>
                 <input
                   type="password"
                   value={confirmPassword}
@@ -99,7 +99,7 @@ const Register = (): JSX.Element => {
               <p>
                 Have an account?{" "}
                 <span
-                  onClick={() => navigate("/")}
+                  onClick={() => navigate("/auth/login")}
                   className="font-semibold hover:cursor-pointer"
                 >
                   Log In here

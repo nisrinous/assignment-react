@@ -8,9 +8,9 @@ import { RootState } from "../store/store";
 import { nextPage, prevPage } from "../store/slices/formSlice";
 
 import ButtonPagination from "../components/ButtonPagination";
-import EditProductContentNew from "@/components/EditProductContentNew";
-import EditProductContentModel from "@/components/EditProductContentModel";
-import EditProductContentDetail from "@/components/EditProductContentDetail";
+import EditProductContentNew from "../components/EditProductContentNew";
+import EditProductContentModel from "../components/EditProductContentModel";
+import EditProductContentDetail from "../components/EditProductContentDetail";
 
 const EditProduct = (): JSX.Element => {
   const dispatch = useDispatch();

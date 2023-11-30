@@ -20,7 +20,7 @@ const Login = (): JSX.Element => {
     try {
       await login(email, password);
       toast.success("Log in successful!");
-      navigate("/product/add");
+      navigate("/product");
     } catch (error) {
       toast.error("" + error);
     }
@@ -33,12 +33,12 @@ const Login = (): JSX.Element => {
         <div className="bg-white w-full md:max-w-md lg:max-w-full md:mx-auto md:w-1/2 h-screen px-6 lg:px-16 xl:px-12 flex items-center justify-center">
           <div className="h-100 max-w-sm md:w-full md:mx-5">
             <Brand src={logo} />
-            <h1 className="text-xl md:text-2xl font-bold leading-tight mt-12 text-[#333333]">
+            <h1 className="text-xl md:text-2xl font-bold leading-tight mt-12 text-[#333]">
               Log In
             </h1>
             <form className="mt-6" onSubmit={handleLogin}>
               <div>
-                <label className="block text-[#666666]">Email</label>
+                <label className="block text-[#666]">Email</label>
                 <input
                   type="email"
                   value={email}
@@ -51,7 +51,7 @@ const Login = (): JSX.Element => {
               </div>
 
               <div className="mt-4">
-                <label className="block text-[#666666]">Password</label>
+                <label className="block text-[#666]">Password</label>
                 <input
                   type="password"
                   value={password}
@@ -63,7 +63,7 @@ const Login = (): JSX.Element => {
               </div>
 
               <div className="text-right mt-2">
-                <a href="#" className="text-sm font-semibold text-[#666666] ">
+                <a href="#" className="text-sm font-semibold text-[#666] ">
                   Forgot Password?
                 </a>
               </div>
@@ -75,11 +75,11 @@ const Login = (): JSX.Element => {
                 Log In
               </button>
             </form>
-            <div className="my-11 text-[#333333]">
+            <div className="my-11 text-[#333]">
               <p>
                 Don't have an account?{" "}
                 <span
-                  onClick={() => navigate("/register")}
+                  onClick={() => navigate("/auth/signup")}
                   className="font-semibold cursor-pointer"
                 >
                   Sign Up here

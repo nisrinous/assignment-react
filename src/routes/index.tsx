@@ -6,17 +6,22 @@ import ProductList from "../pages/ProductList";
 import EditProduct from "../pages/EditProduct";
 import { useAuth } from "../stores/AuthContext";
 import NotFound from "../pages/NotFound";
+import ProductDetail from "../pages/ProductDetail";
 
 export const AppRoute = (): JSX.Element => {
-  const { email } = useAuth();
+  const { token } = useAuth();
+  const localToken = localStorage.getItem("token");
+
   const routes = useRoutes([
     {
-      path: "/",
-      element: <Login />,
+      path: "/auth/login",
+      element:
+        localToken === null ? <Login /> : <Navigate to="/product" replace />,
     },
     {
-      path: "/register",
-      element: <Register />,
+      path: "/auth/signup",
+      element:
+        localToken === null ? <Register /> : <Navigate to="/product" replace />,
     },
     {
       path: "/product",
@@ -24,11 +29,26 @@ export const AppRoute = (): JSX.Element => {
     },
     {
       path: "/product/add",
-      element: email ? <AddProduct /> : <Navigate to="/" replace />,
+      element:
+        token !== null ? <AddProduct /> : <Navigate to="/auth/login" replace />,
+    },
+    {
+      path: "/product/:id",
+      element:
+        token !== null ? (
+          <ProductDetail />
+        ) : (
+          <Navigate to="/auth/login" replace />
+        ),
     },
     {
       path: "/product/:id/edit",
-      element: email ? <EditProduct /> : <Navigate to="/" replace />,
+      element:
+        token !== null ? (
+          <EditProduct />
+        ) : (
+          <Navigate to="/auth/login" replace />
+        ),
     },
     {
       path: "*",

@@ -37,13 +37,6 @@
       "email": "piu@mail.com",
       "password": "pass",
       "token": "8733e376-38c3-4242-bed6-5a0db9927504"
-    },
-    {
-      "id": 2,
-      "name": "piu",
-      "email": "piu@mail",
-      "password": "d",
-      "token": "4ad26a4b-324f-4257-8943-f42882c8b924"
     }
   ]
 }
