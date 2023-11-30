@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import ButtonRounded from "./ButtonRounded";
 import toast from "react-hot-toast";
 import MainHeader from "./MainHeader";
+import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
 
 interface Product {
   id: number;
@@ -14,6 +15,7 @@ interface Product {
 export default function ProductListTable(): JSX.Element {
   const [products, setProducts] = useState<Product[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
+  const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
 
   const fetchProducts = async () => {
     try {
@@ -41,6 +43,29 @@ export default function ProductListTable(): JSX.Element {
     );
     setFilteredProducts(filtered);
   };
+
+  const handleSortByName = () => {
+    const sortedProducts = [...filteredProducts]; // Create a copy to avoid mutating state directly
+
+    sortedProducts.sort((currentElement, nextElement) => {
+      const current = currentElement.name.toLowerCase();
+      const next = nextElement.name.toLowerCase();
+
+      if (sortOrder === "asc") {
+        if (current < next) return -1;
+        if (current > next) return 1;
+        return 0;
+      } else {
+        if (current > next) return -1;
+        if (current < next) return 1;
+        return 0;
+      }
+    });
+
+    setFilteredProducts(sortedProducts);
+    setSortOrder(sortOrder === "asc" ? "desc" : "asc");
+  };
+
   const handleEditProduct = (productId: number) => {};
 
   const handleDeleteProduct = (productId: number) => {};
@@ -68,48 +93,61 @@ export default function ProductListTable(): JSX.Element {
         <div className="w-full">
           <div className="relative flex flex-col min-w-0 w-full rounded">
             <div className="block w-full overflow-x-auto">
-              <table className="items-center bg-transparent w-full border-collapse rounder-lg border-2">
+              <table className="items-center bg-transparent w-full border-collapse rounder-lg border">
                 <thead>
                   <tr className="text-[#1A1A1A]">
-                    <th className="px-6 bg-blueGray-50 text-blueGray-500  border border-solid border-blueGray-100 py-3 text-medium  border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                    <th className="px-6 bg-white text-blueGray-500  border border-solid border-blueGray-100 py-3 text-medium font-semibold text-left">
                       ID
                     </th>
-                    <th className="px-6 bg-blueGray-50 text-blueGray-500  border border-solid border-blueGray-100 py-3 text-medium  border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                    <th
+                      className="flex flex-row justify-between px-6 align-middle bg-white text-blueGray-500 py-3 text-medium font-semibold text-left"
+                      onClick={handleSortByName}
+                    >
                       Name
+                      {sortOrder === "asc" ? (
+                        <MdKeyboardArrowDown size={25} />
+                      ) : (
+                        <MdKeyboardArrowUp size={25} />
+                      )}
                     </th>
-                    <th className="px-6 bg-blueGray-50 text-blueGray-500  border border-solid border-blueGray-100 py-3 text-medium  border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                    <th className="px-6 bg-white text-blueGray-500  border border-solid border-blueGray-100 py-3 text-medium font-semibold text-left">
                       Category
                     </th>
-                    <th className="px-6 bg-blueGray-50 text-blueGray-500  border border-solid border-blueGray-100 py-3 text-medium  border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                    <th className="px-6 bg-white text-blueGray-500  border border-solid border-blueGray-100 py-3 text-medium font-semibold text-left">
                       Prices
                     </th>
-                    <th className="px-6 bg-blueGray-50 text-blueGray-500  border border-solid border-blueGray-100 py-3 text-medium  border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                    <th className="px-6 bg-white text-blueGray-500  border border-solid border-blueGray-100 py-3 text-medium font-semibold text-left">
                       Discount
                     </th>
-                    <th className="px-6 bg-blueGray-50 text-blueGray-500  border border-solid border-blueGray-100 py-3 text-medium  border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"></th>
+                    <th className="px-6 bg-white text-blueGray-500 border-b-[1px] py-3 text-medium font-semibold text-left">
+                      {" "}
+                    </th>
                   </tr>
                 </thead>
 
                 <tbody>
                   {filteredProducts.map((product) => (
                     <tr className="align-left" key={product.id}>
-                      <td className="border-t-0 px-6  border-l-0 border-r-0 text-base whitespace-nowrap p-4 text-left">
+                      <td className=" px-6 text-base p-4 text-left border border-blueGray-100">
                         {product.id}
                       </td>
-                      <td className="border-t-0 px-6  border-l-0 border-r-0 text-base whitespace-nowrap p-4 text-left">
+                      <td className=" px-6 text-base p-4 text-left border border-blueGray-100">
                         {product.name}
                       </td>
-                      <td className="border-t-0 px-6 text-right  border-l-0 border-r-0 text-base whitespace-nowrap p-4">
+                      <td className=" px-6 text-right text-base p-4 border border-blueGray-100">
                         {product.category}
                       </td>
-                      <td className="border-t-0 px-6 text-right  border-l-0 border-r-0 text-base whitespace-nowrap p-4">
+                      <td className=" px-6 text-right text-base p-4 border border-blueGray-100">
                         {`$${product.price}`}
                       </td>
-                      <td className="border-t-0 px-6 text-right  border-l-0 border-r-0 text-base whitespace-nowrap p-4">
+                      <td className=" px-6 text-right text-base p-4 border border-blueGray-100">
                         {`${product.discount}%`}
                       </td>
-                      <td className="flex justify-evenly border-t-0 px-6 text-right border-l-0 border-r-0 text-base whitespace-nowrap p-4">
-                        <button onClick={() => handleEditProduct(product.id)}>
+                      <td className="flex justify-evenly px-6 text-base p-4 border-b-[1px] border-solid border-blueGray-100">
+                        <button
+                          className="border-none"
+                          onClick={() => handleEditProduct(product.id)}
+                        >
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="24"
