@@ -1,4 +1,4 @@
-export default function EditProductContentNew(): JSX.Element {
+export default function EditProductNew(): JSX.Element {
   return (
     <>
       <div className="overflow-x-auto">

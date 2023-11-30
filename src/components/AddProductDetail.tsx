@@ -1,12 +1,26 @@
 import MainHeadline from "./MainHeadline";
+import ButtonPagination from "./ButtonPagination";
 
-export default function EditProductContentDetail(): JSX.Element {
+import { useDispatch } from "react-redux";
+import { prevPage } from "../store/slices/formSlice";
+
+export default function AddProductDetail(): JSX.Element {
+  const dispatch = useDispatch();
+
+  const handlePrev = () => {
+    dispatch(prevPage());
+  };
+
+  const handleSubmitProduct = () => {
+    console.log("submitted");
+  };
+
   return (
     <>
       <div className="overflow-x-auto">
         <div className="flex flex-col items-left justify-start rounded-xl">
           <MainHeadline title="Detail" isSupportingContent={false} />
-          <form action="#" method="POST">
+          <form onSubmit={handleSubmitProduct}>
             <div className="my-6">
               <label className="block text-[#666]">Material</label>
               <textarea
@@ -69,6 +83,11 @@ export default function EditProductContentDetail(): JSX.Element {
                 required
               />
             </div>
+            <ButtonPagination
+              left="Prev"
+              right="Submit"
+              actionLeft={handlePrev}
+            />
           </form>
         </div>
       </div>

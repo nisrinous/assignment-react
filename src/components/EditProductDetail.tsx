@@ -1,6 +1,6 @@
 import MainHeadline from "./MainHeadline";
 
-export default function AddProductContentDetail(): JSX.Element {
+export default function EditProductDetail(): JSX.Element {
   return (
     <>
       <div className="overflow-x-auto">

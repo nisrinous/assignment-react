@@ -8,9 +8,9 @@ import { RootState } from "../store/store";
 import { nextPage, prevPage } from "../store/slices/formSlice";
 
 import ButtonPagination from "../components/ButtonPagination";
-import EditProductContentNew from "../components/EditProductContentNew";
-import EditProductContentModel from "../components/EditProductContentModel";
-import EditProductContentDetail from "../components/EditProductContentDetail";
+import EditProductNew from "../components/EditProductNew";
+import EditProductModel from "../components/EditProductModel";
+import EditProductDetail from "../components/EditProductDetail";
 
 const EditProduct = (): JSX.Element => {
   const dispatch = useDispatch();
@@ -33,13 +33,13 @@ const EditProduct = (): JSX.Element => {
         <MainHeader>ADD NEW PRODUCT {currentPage}/3</MainHeader>
         {currentPage === 1 && (
           <>
-            <EditProductContentNew />
+            <EditProductNew />
             <ButtonPagination right="Next" actionRight={handleNext} />
           </>
         )}
         {currentPage === 2 && (
           <>
-            <EditProductContentModel />
+            <EditProductModel />
             <ButtonPagination
               left="Prev"
               right="Next"
@@ -50,7 +50,7 @@ const EditProduct = (): JSX.Element => {
         )}
         {currentPage === 3 && (
           <>
-            <EditProductContentDetail />{" "}
+            <EditProductDetail />{" "}
             <ButtonPagination
               left="Prev"
               right="Submit"

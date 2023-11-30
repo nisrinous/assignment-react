@@ -1,7 +1,7 @@
 import MainHeadline from "./MainHeadline";
 import ButtonSecondary from "./ButtonSecondary";
 
-export default function AddProductContentModel(): JSX.Element {
+export default function EditProductModel(): JSX.Element {
   return (
     <>
       <div className="overflow-x-auto">
