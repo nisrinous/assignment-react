@@ -68,8 +68,25 @@ export default function ProductListTable(): JSX.Element {
 
   const handleEditProduct = (productId: number) => {};
 
-  const handleDeleteProduct = (productId: number) => {};
+  const handleDeleteProduct = async (productId: number) => {
+    try {
+      const response = await fetch(
+        `http://localhost:3000/products/${productId}`,
+        {
+          method: "DELETE",
+        }
+      );
 
+      if (response.ok) {
+        await fetchProducts();
+        toast.success("Product deleted successfully");
+      } else {
+        throw new Error("Failed to delete product");
+      }
+    } catch (error) {
+      toast.error("" + error);
+    }
+  };
   return (
     <>
       <MainHeader>
