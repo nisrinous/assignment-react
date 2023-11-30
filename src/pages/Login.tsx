@@ -63,7 +63,7 @@ const Login = (): JSX.Element => {
               </div>
 
               <div className="text-right mt-2">
-                <a href="#" className="text-sm font-semibold text-[#666] ">
+                <a href="#" className="text-sm font-semibold text-[#666]">
                   Forgot Password?
                 </a>
               </div>

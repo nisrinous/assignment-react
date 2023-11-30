@@ -13,17 +13,20 @@ export default function Aside(): JSX.Element {
             </span>
           </a>
           <div className="flex flex-col items-center w-full">
-            <a className="flex items-center justify-center w-12 h-12 mt-2 rounded ">
+            <a
+              className="flex items-center justify-center w-12 h-12 mt-2 rounded "
+              href="/product"
+            >
               <span className="text-xs font-bold text-[#333] hover:text-[#D84727]">
                 PRODUCT
               </span>
             </a>
-            <a className="flex items-center justify-center w-12 h-12 mt-2 rounded ">
+            <a className="flex items-center justify-center w-12 h-12 mt-2 rounded">
               <span className="text-xs font-bold text-[#333] hover:text-[#D84727]">
                 REVENUE
               </span>
             </a>
-            <a className="flex items-center justify-center w-12 h-12 mt-2 rounded ">
+            <a className="flex items-center justify-center w-12 h-12 mt-2 rounded">
               <span className="text-xs font-bold text-[#333] hover:text-[#D84727]">
                 CATEGORIES
               </span>
@@ -32,23 +35,26 @@ export default function Aside(): JSX.Element {
         </div>
         <div className="hidden md:flex flex-col items-center w-64 h-full overflow-hidden text-[#333] rounded-tr-2xl rounded-br-xl bg-[#F1DDC9]">
           <a className="flex items-center justify-center w-full h-20 px-3 my-10">
-            <span className="ml-2 text-2xl border-b-[#D84727] border text-[#333] ">
+            <span className="ml-2 text-2xl border-b-[#D84727] border text-[#333]">
               Matoa Admin
             </span>
           </a>
           <div className="w-full px-2">
             <div className="flex flex-col items-center w-full">
-              <a className="flex items-center justify-center w-full h-12 px-3 rounded ">
+              <a
+                className="flex items-center justify-center w-full h-12 px-3 rounded "
+                href="/product"
+              >
                 <span className="ml-5 text-medium font-bold  text-[#333] hover:text-[#D84727]">
                   PRODUCT
                 </span>
               </a>
-              <a className="flex items-center justify-center w-full h-12 px-3 -2 rounded ">
+              <a className="flex items-center justify-center w-full h-12 px-3 -2 rounded">
                 <span className="ml-5 text-medium font-bold  text-[#333] hover:text-[#D84727]">
                   REVENUE
                 </span>
               </a>
-              <a className="flex items-center justify-center w-full h-12 px-3 -2 rounded ">
+              <a className="flex items-center justify-center w-full h-12 px-3 -2 rounded">
                 <span className="ml-5 text-medium font-bold  text-[#333] hover:text-[#D84727]">
                   CATEGORIES
                 </span>
