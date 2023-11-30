@@ -22,27 +22,27 @@ interface ProductState {
   }[];
 }
 
-const initialState: ProductState = {
-  id: 0,
-  name: "",
-  price: 0,
-  weight: 0,
-  width: 0,
-  length: 0,
-  category: 0,
-  discount: 0,
-  caseDetail: "",
-  dial: "",
-  hand: "",
-  material: "",
-  importantNote: "",
-  movement: "",
-  model: [],
-};
+// const initialState: ProductState = {
+//   id: 0,
+//   name: "",
+//   price: 0,
+//   weight: 0,
+//   width: 0,
+//   length: 0,
+//   category: 0,
+//   discount: 0,
+//   caseDetail: "",
+//   dial: "",
+//   hand: "",
+//   material: "",
+//   importantNote: "",
+//   movement: "",
+//   model: [],
+// };
 
 const productSlice = createSlice({
   name: "product",
-  initialState,
+  initialState: {} as ProductState,
   reducers: {
     setAttribute: (state, action: PayloadAction<Partial<ProductState>>) => {
       Object.assign(state, action.payload);

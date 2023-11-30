@@ -1,5 +1,4 @@
-import { useParams } from "react-router-dom";
-import MainHeadline from "../components/MainHeadline";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Product } from "@/types";
 import toast from "react-hot-toast";
@@ -9,6 +8,7 @@ import MainLayout from "../components/MainLayout";
 export default function ProductDetail(): JSX.Element {
   const { id } = useParams();
   const [product, setProduct] = useState<Product | null>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -41,13 +41,20 @@ export default function ProductDetail(): JSX.Element {
   let totalQty = 0;
   product?.model?.forEach((m) => (totalQty += m.qty));
 
+  const backToProductList = () => {
+    navigate("/product");
+  };
+
   return (
     <>
       <Aside />
       <MainLayout>
         <div className="overflow-x-auto">
           <div className="flex flex-col items-left justify-start rounded-xl">
-            <button className="absolute top-16 right-14 border-[1px] rounded-lg border-[#D84727] text-[#D84727] py-1 px-4">
+            <button
+              className="absolute top-16 right-14 border-[1px] rounded-lg border-[#D84727] text-[#D84727] py-1 px-4"
+              onClick={backToProductList}
+            >
               back
             </button>
             {product && (
