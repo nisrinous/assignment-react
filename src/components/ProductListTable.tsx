@@ -3,6 +3,7 @@ import ButtonRounded from "./ButtonRounded";
 import toast from "react-hot-toast";
 import MainHeader from "./MainHeader";
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 
 interface Product {
   id: number;
@@ -13,9 +14,12 @@ interface Product {
 }
 
 export default function ProductListTable(): JSX.Element {
+  const navigate = useNavigate();
   const [products, setProducts] = useState<Product[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
+  const [visible, setVisible] = useState<boolean>(false);
+  let [index, setIndex] = useState<number>(-1);
 
   const fetchProducts = async () => {
     try {
@@ -32,10 +36,6 @@ export default function ProductListTable(): JSX.Element {
       toast.error("" + error);
     }
   };
-
-  useEffect(() => {
-    fetchProducts();
-  }, []);
 
   const handleFilterByName = (searchValue: string) => {
     const filtered = products.filter((product) =>
@@ -66,7 +66,23 @@ export default function ProductListTable(): JSX.Element {
     setSortOrder(sortOrder === "asc" ? "desc" : "asc");
   };
 
-  const handleEditProduct = (productId: number) => {};
+  const handleDetailProduct = (productId: number) => {
+    navigate(`/product/${productId}`);
+  };
+
+  const onDelete = (productIndex: number) => {
+    setVisible(true);
+    setIndex(productIndex);
+  };
+
+  const deleteConfirmed = () => {
+    setVisible(false);
+    handleDeleteProduct(index);
+  };
+
+  const deleteCanceled = () => {
+    setVisible(false);
+  };
 
   const handleDeleteProduct = async (productId: number) => {
     try {
@@ -87,10 +103,72 @@ export default function ProductListTable(): JSX.Element {
       toast.error("" + error);
     }
   };
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
   return (
     <>
+      {visible && (
+        <div
+          className="fixed w-screen h-screen first-letter:right-0 m-auto z-10 bg-gray-200/80 duration-150 ease-in-out"
+          id="modal"
+        >
+          <div
+            role="alert"
+            className="container mx-auto w-11/12 max-w-lg md:w-2/3 z-50"
+          >
+            <div className="absolute top-1/3 left-1/4 rounded-xl border border-gray-400 bg-white px-5 pt-3 shadow-md md:px-10">
+              <h1 className="font-lg mb-4 border-b pb-2 font-bold leading-tight tracking-normal text-gray-800">
+                Confirm delete
+              </h1>
+              <p className="my-10 text-sm leading-tight tracking-normal text-gray-800">
+                Are you sure want to delete Product Name?
+              </p>
+
+              <div className="flex w-full items-center justify-end border-t-2 pt-1">
+                <button
+                  className="my-2 rounded-lg border-2 border-[#D84727] bg-[#D84727] px-8 py-1 text-sm text-white"
+                  onClick={deleteConfirmed}
+                >
+                  Yes
+                </button>
+                <button
+                  className="ml-3 rounded-lg border-2 border-[#D84727] text-[#D84727] bg-white px-8 py-1 text-sm"
+                  onClick={deleteCanceled}
+                >
+                  No
+                </button>
+              </div>
+              <button
+                className="absolute right-0 top-0 mr-5 mt-4 cursor-pointer rounded text-gray-400"
+                aria-label="close modal"
+                role="button"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="icon icon-tabler icon-tabler-x"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  strokeWidth="2.5"
+                  stroke="#D84727"
+                  fill="none"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path stroke="none" d="M0 0h24v24H0z" />
+                  <line x1="18" y1="6" x2="6" y2="18" />
+                  <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
       <MainHeader>
-        <div className="flex flex-row items-center justify-between">
+        <div className="flex p-10 md:px-28 flex-row items-center justify-between">
           <div className="text-2xl">PRODUCT LIST</div>
           <div className="flex gap-2 items-center">
             <div className="relative w-full h-full max-w-full flex-grow text-right">
@@ -107,7 +185,7 @@ export default function ProductListTable(): JSX.Element {
       </MainHeader>
 
       <section>
-        <div className="w-full">
+        <div className="w-full p-10 md:px-28">
           <div className="relative flex flex-col min-w-0 w-full rounded">
             <div className="block w-full overflow-x-auto">
               <table className="items-center bg-transparent w-full border-collapse rounder-lg border">
@@ -161,10 +239,7 @@ export default function ProductListTable(): JSX.Element {
                         {`${product.discount}%`}
                       </td>
                       <td className="flex justify-evenly px-6 text-base p-4 border-b-[1px] border-solid border-blueGray-100">
-                        <button
-                          className="border-none"
-                          onClick={() => handleEditProduct(product.id)}
-                        >
+                        <button className="border-none">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="24"
@@ -188,7 +263,7 @@ export default function ProductListTable(): JSX.Element {
                             />
                           </svg>
                         </button>
-                        <button onClick={() => handleDeleteProduct(product.id)}>
+                        <button onClick={() => onDelete(product.id)}>
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="24"
@@ -226,35 +301,37 @@ export default function ProductListTable(): JSX.Element {
                             />
                           </svg>
                         </button>
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                        >
-                          <path
-                            d="M12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13Z"
-                            fill="#1A1A1A"
-                            stroke="#1A1A1A"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                          <path
-                            d="M12 6C12.5523 6 13 5.55228 13 5C13 4.44772 12.5523 4 12 4C11.4477 4 11 4.44772 11 5C11 5.55228 11.4477 6 12 6Z"
-                            fill="#BDBCDB"
-                            stroke="#1A1A1A"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                          <path
-                            d="M12 20C12.5523 20 13 19.5523 13 19C13 18.4477 12.5523 18 12 18C11.4477 18 11 18.4477 11 19C11 19.5523 11.4477 20 12 20Z"
-                            fill="#1A1A1A"
-                            stroke="#1A1A1A"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                        </svg>
+                        <button onClick={() => handleDetailProduct(product.id)}>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                          >
+                            <path
+                              d="M12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13Z"
+                              fill="#1A1A1A"
+                              stroke="#1A1A1A"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
+                            <path
+                              d="M12 6C12.5523 6 13 5.55228 13 5C13 4.44772 12.5523 4 12 4C11.4477 4 11 4.44772 11 5C11 5.55228 11.4477 6 12 6Z"
+                              fill="#BDBCDB"
+                              stroke="#1A1A1A"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
+                            <path
+                              d="M12 20C12.5523 20 13 19.5523 13 19C13 18.4477 12.5523 18 12 18C11.4477 18 11 18.4477 11 19C11 19.5523 11.4477 20 12 20Z"
+                              fill="#1A1A1A"
+                              stroke="#1A1A1A"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
+                          </svg>
+                        </button>
                       </td>
                     </tr>
                   ))}

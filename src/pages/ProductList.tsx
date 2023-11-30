@@ -1,14 +1,14 @@
 import Aside from "../components/Aside";
-import MainLayout from "../components/MainLayout";
+import ListLayout from "../components/ListLayout";
 import ProductListTable from "../components/ProductListTable";
 
 export default function ProductList(): JSX.Element {
   return (
     <>
       <Aside />
-      <MainLayout>
+      <ListLayout>
         <ProductListTable />
-      </MainLayout>
+      </ListLayout>
     </>
   );
 }

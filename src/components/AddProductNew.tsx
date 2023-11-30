@@ -12,26 +12,29 @@ export default function AddProductNew(): JSX.Element {
 
   const handleNext = () => {
     dispatch(nextPage());
+    console.log(name);
+    console.log(price);
+    console.log(discount);
+    console.log(weight);
+    console.log(length);
+    console.log(width);
+    console.log(category);
   };
 
   const setName = (input: string) => {
     dispatch(setAttribute({ name: input }));
-    console.log(name);
   };
 
   const setPrice = (input: number) => {
     dispatch(setAttribute({ price: input }));
-    console.log(price);
   };
 
   const setDiscount = (input: number) => {
     dispatch(setAttribute({ discount: input }));
-    console.log(discount);
   };
 
   const setWeight = (input: number) => {
     dispatch(setAttribute({ weight: input }));
-    console.log(weight);
   };
 
   const setLength = (input: number) => {
@@ -44,7 +47,6 @@ export default function AddProductNew(): JSX.Element {
 
   const setCategory = (input: number) => {
     dispatch(setAttribute({ category: input }));
-    console.log(category);
   };
 
   return (
@@ -69,11 +71,9 @@ export default function AddProductNew(): JSX.Element {
                 <label className="block text-xl text-[#666]">Price</label>
                 <input
                   type="number"
-                  first
+                  value={price}
                   min={100}
                   max={999999999}
-                  name="price"
-                  id=""
                   placeholder="ex: kayu jati mod"
                   className="w-full px-4 py-3 rounded-lg mt-2 bg-[#F1F1F1]"
                   onChange={(e) => setPrice(Number(e.target.value))}
@@ -86,8 +86,7 @@ export default function AddProductNew(): JSX.Element {
                   type="number"
                   min={1}
                   max={100}
-                  name="discount"
-                  id=""
+                  value={discount}
                   placeholder="ex: kayu jati mod"
                   className="w-full px-4 py-3 rounded-lg mt-2 bg-[#F1F1F1]"
                   onChange={(e) => setDiscount(Number(e.target.value))}
@@ -102,11 +101,10 @@ export default function AddProductNew(): JSX.Element {
                   type="number"
                   min={1}
                   max={99}
-                  name="weight"
-                  id=""
+                  value={weight}
                   placeholder="ex: kayu jati mod"
                   className="w-full px-4 py-3 rounded-lg mt-2 bg-[#F1F1F1]"
-                  onChange={(e) => setWeight(Number(e.target.value))}
+                  onChange={(e) => setWeight(Number(e.target.value) + 1)}
                   required
                 />
               </div>
@@ -116,8 +114,7 @@ export default function AddProductNew(): JSX.Element {
                   type="number"
                   min={1}
                   max={99}
-                  name="length"
-                  id=""
+                  value={length}
                   placeholder="ex: kayu jati mod"
                   className="w-full px-4 py-3 rounded-lg mt-2 bg-[#F1F1F1]"
                   onChange={(e) => setLength(Number(e.target.value))}
@@ -130,8 +127,7 @@ export default function AddProductNew(): JSX.Element {
                   type="number"
                   min={1}
                   max={99}
-                  name="width"
-                  id=""
+                  value={width}
                   placeholder="ex: kayu jati mod"
                   className="w-full px-4 py-3 rounded-lg mt-2 bg-[#F1F1F1]"
                   onChange={(e) => setWidth(Number(e.target.value))}
@@ -142,8 +138,7 @@ export default function AddProductNew(): JSX.Element {
             <div className="my-6">
               <label className="block text-[#666]">Category</label>
               <select
-                id="category"
-                name="category"
+                value={category}
                 className="w-full px-4 py-3 rounded-lg mt-2 bg-[#F1F1F1] border-0"
                 onChange={(e) => setCategory(e.target.selectedIndex)}
               >
