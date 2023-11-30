@@ -106,7 +106,6 @@ export const AuthProvider = ({
 
         if (response.ok) {
           setAuthToken("generatedToken");
-          localStorage.setItem("token", generatedToken);
         } else {
           throw new Error("Failed to register user");
         }

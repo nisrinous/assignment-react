@@ -22,6 +22,7 @@ const Register = (): JSX.Element => {
     try {
       if (password === confirmPassword) {
         await register(name, email, password);
+        toast.success("Log in successful!");
         navigate("/auth/login");
       } else {
         throw new Error("Password doesn't match");

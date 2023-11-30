@@ -1,29 +1,6 @@
 {
   "products": [
     {
-      "id": 1,
-      "name": "Steampan - Foil",
-      "price": 78148.51,
-      "weight": 7.25,
-      "width": 6.97,
-      "length": 3.45,
-      "category": 1,
-      "discount": 86.71,
-      "caseDetail": "Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
-      "dial": "Vestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis.\n\nDuis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus.\n\nMauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero.",
-      "hand": "Proin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem.\n\nDuis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit.",
-      "material": "Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus.\n\nIn sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus.\n\nSuspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.",
-      "importantNote": "Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi.\n\nNam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus.\n\nCurabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla. Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.",
-      "movement": "Phasellus in felis. Donec semper sapien a libero. Nam dui.\n\nProin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis. Ut at dolor quis odio consequat varius.",
-      "model": [
-        {
-          "name": "cream",
-          "qty": 10,
-          "photos": ["image url from cloudinary", "image url from cloudinary"]
-        }
-      ]
-    },
-    {
       "id": 2,
       "name": "Wine - Two Oceans Cabernet",
       "price": 112127.53,
@@ -42,12 +19,17 @@
         {
           "name": "cream",
           "qty": 5,
-          "photos": ["image url from cloudinary", "image url from cloudinary"]
+          "photos": [
+            "image url from cloudinary",
+            "image url from cloudinary"
+          ]
         },
         {
           "name": "cream",
           "qty": 1,
-          "photos": ["image url from cloudinary"]
+          "photos": [
+            "image url from cloudinary"
+          ]
         }
       ]
     },
@@ -70,7 +52,9 @@
         {
           "name": "jati",
           "qty": 18,
-          "photos": ["image url from cloudinary"]
+          "photos": [
+            "image url from cloudinary"
+          ]
         }
       ]
     },
@@ -93,35 +77,17 @@
         {
           "name": "jati",
           "qty": 5,
-          "photos": ["image url from cloudinary", "image url from cloudinary"]
+          "photos": [
+            "image url from cloudinary",
+            "image url from cloudinary"
+          ]
         },
         {
           "name": "cream",
           "qty": 18,
-          "photos": ["image url from cloudinary"]
-        }
-      ]
-    },
-    {
-      "id": 5,
-      "name": "Whmis - Spray Bottle Trigger",
-      "price": 147193.19,
-      "weight": 0.49,
-      "width": 2.65,
-      "length": 1.56,
-      "category": 1,
-      "discount": 53.64,
-      "caseDetail": "Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.\n\nMaecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat.",
-      "dial": "Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero.\n\nNullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh.\n\nIn quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet.",
-      "hand": "Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero.",
-      "material": "Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.\n\nEtiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem.\n\nPraesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio.",
-      "importantNote": "Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus.\n\nIn sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus.\n\nSuspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.",
-      "movement": "Proin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis. Ut at dolor quis odio consequat varius.\n\nInteger ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi.",
-      "model": [
-        {
-          "name": "cream",
-          "qty": 10,
-          "photos": ["image url from cloudinary"]
+          "photos": [
+            "image url from cloudinary"
+          ]
         }
       ]
     },
@@ -144,12 +110,17 @@
         {
           "name": "cream",
           "qty": 4,
-          "photos": ["image url from cloudinary", "image url from cloudinary"]
+          "photos": [
+            "image url from cloudinary",
+            "image url from cloudinary"
+          ]
         },
         {
           "name": "jati",
           "qty": 18,
-          "photos": ["image url from cloudinary"]
+          "photos": [
+            "image url from cloudinary"
+          ]
         }
       ]
     },
@@ -172,7 +143,9 @@
         {
           "name": "cream",
           "qty": 2,
-          "photos": ["image url from cloudinary"]
+          "photos": [
+            "image url from cloudinary"
+          ]
         }
       ]
     },
@@ -195,7 +168,9 @@
         {
           "name": "jati",
           "qty": 3,
-          "photos": ["image url from cloudinary"]
+          "photos": [
+            "image url from cloudinary"
+          ]
         }
       ]
     },
@@ -218,7 +193,10 @@
         {
           "name": "jati",
           "qty": 8,
-          "photos": ["image url from cloudinary", "image url from cloudinary"]
+          "photos": [
+            "image url from cloudinary",
+            "image url from cloudinary"
+          ]
         }
       ]
     },
@@ -241,12 +219,17 @@
         {
           "name": "cream",
           "qty": 8,
-          "photos": ["image url from cloudinary"]
+          "photos": [
+            "image url from cloudinary"
+          ]
         },
         {
           "name": "jati",
           "qty": 4,
-          "photos": ["image url from cloudinary", "image url from cloudinary"]
+          "photos": [
+            "image url from cloudinary",
+            "image url from cloudinary"
+          ]
         }
       ]
     },
@@ -269,7 +252,10 @@
         {
           "name": "jati",
           "qty": 3,
-          "photos": ["image url from cloudinary", "image url from cloudinary"]
+          "photos": [
+            "image url from cloudinary",
+            "image url from cloudinary"
+          ]
         }
       ]
     },
@@ -292,7 +278,10 @@
         {
           "name": "jati",
           "qty": 2,
-          "photos": ["image url from cloudinary", "image url from cloudinary"]
+          "photos": [
+            "image url from cloudinary",
+            "image url from cloudinary"
+          ]
         }
       ]
     },
@@ -315,12 +304,16 @@
         {
           "name": "jati",
           "qty": 17,
-          "photos": ["image url from cloudinary"]
+          "photos": [
+            "image url from cloudinary"
+          ]
         },
         {
           "name": "jati",
           "qty": 19,
-          "photos": ["image url from cloudinary"]
+          "photos": [
+            "image url from cloudinary"
+          ]
         }
       ]
     },
@@ -343,12 +336,17 @@
         {
           "name": "cream",
           "qty": 14,
-          "photos": ["image url from cloudinary"]
+          "photos": [
+            "image url from cloudinary"
+          ]
         },
         {
           "name": "jati",
           "qty": 2,
-          "photos": ["image url from cloudinary", "image url from cloudinary"]
+          "photos": [
+            "image url from cloudinary",
+            "image url from cloudinary"
+          ]
         }
       ]
     },
@@ -371,12 +369,16 @@
         {
           "name": "cream",
           "qty": 0,
-          "photos": ["image url from cloudinary"]
+          "photos": [
+            "image url from cloudinary"
+          ]
         },
         {
           "name": "jati",
           "qty": 2,
-          "photos": ["image url from cloudinary"]
+          "photos": [
+            "image url from cloudinary"
+          ]
         }
       ]
     }
@@ -388,6 +390,27 @@
       "email": "piu@mail.com",
       "password": "pass",
       "token": "8733e376-38c3-4242-bed6-5a0db9927504"
+    },
+    {
+      "name": "pi",
+      "email": "pipi@mail.com",
+      "password": "pass",
+      "token": "1654ee79-5a85-41a3-860c-0471fa0de1de",
+      "id": 2
+    },
+    {
+      "name": "pipipi",
+      "email": "pipipi@mail.com",
+      "password": "pass",
+      "token": "c6031637-9d36-49f7-a16f-5a4151f63d83",
+      "id": 3
+    },
+    {
+      "name": "piw",
+      "email": "piw@mail.com",
+      "password": "pass",
+      "token": "05b12e6a-5cd3-4d8d-935d-8913d0c79142",
+      "id": 4
     }
   ]
 }
