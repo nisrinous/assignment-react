@@ -35,7 +35,7 @@ export default function Aside(): JSX.Element {
         </div>
         <div className="hidden md:flex flex-col items-center w-64 h-full overflow-hidden text-[#333] rounded-tr-2xl rounded-br-xl bg-[#F1DDC9]">
           <a className="flex items-center justify-center w-full h-20 px-3 my-10">
-            <span className="ml-2 text-2xl border-b-[#D84727] border text-[#333]">
+            <span className="ml-2 text-3xl border-b-[#D84727] border text-[#333]">
               Matoa Admin
             </span>
           </a>

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import ButtonRounded from "./ButtonRounded";
 import toast from "react-hot-toast";
+import MainHeader from "./MainHeader";
 
 interface Product {
   id: number;
@@ -46,21 +47,26 @@ export default function ProductListTable(): JSX.Element {
 
   return (
     <>
+      <MainHeader>
+        <div className="flex flex-row items-center justify-between">
+          <div className="text-2xl">PRODUCT LIST</div>
+          <div className="flex gap-2 items-center">
+            <div className="relative w-full h-full max-w-full flex-grow text-right">
+              <ButtonRounded text="Add Product" target="/product/add" />
+            </div>
+            <input
+              type="text"
+              placeholder="Search by name..."
+              onChange={(e) => handleFilterByName(e.target.value)}
+              className="px-3 py-1 rounded-xl my-2 bg-white border-2 text-base font-normal"
+            />
+          </div>
+        </div>
+      </MainHeader>
+
       <section>
         <div className="w-full">
           <div className="relative flex flex-col min-w-0 w-full rounded">
-            <div className="flex gap-2 items-center">
-              <div className="relative w-full h-full max-w-full flex-grow text-right">
-                <ButtonRounded text="Add Product" target="/product/add" />
-              </div>
-              <input
-                type="text"
-                placeholder="Search by name..."
-                onChange={(e) => handleFilterByName(e.target.value)}
-                className="px-3 py-1 rounded-xl my-2 bg-white border-2"
-              />
-            </div>
-
             <div className="block w-full overflow-x-auto">
               <table className="items-center bg-transparent w-full border-collapse rounder-lg border-2">
                 <thead>
