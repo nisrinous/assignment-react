@@ -24,6 +24,8 @@ export default function AddProductDetail(): JSX.Element {
             <div className="my-6">
               <label className="block text-[#666]">Material</label>
               <textarea
+                minLength={5}
+                maxLength={500}
                 name=""
                 id=""
                 placeholder="ex: kayu jati mod"
@@ -34,6 +36,8 @@ export default function AddProductDetail(): JSX.Element {
             <div className="my-6">
               <label className="block text-xl text-[#666]">Case</label>
               <textarea
+                minLength={5}
+                maxLength={500}
                 name=""
                 id=""
                 placeholder="ex: kayu jati mod"
@@ -44,6 +48,8 @@ export default function AddProductDetail(): JSX.Element {
             <div className="my-6">
               <label className="block text-xl text-[#666]">Movement</label>
               <textarea
+                minLength={5}
+                maxLength={500}
                 name=""
                 id=""
                 placeholder="ex: kayu jati mod"
@@ -54,6 +60,8 @@ export default function AddProductDetail(): JSX.Element {
             <div className="my-6">
               <label className="block text-xl text-[#666]">Dial</label>
               <textarea
+                minLength={5}
+                maxLength={500}
                 name=""
                 id=""
                 placeholder="ex: kayu jati mod"
@@ -64,6 +72,8 @@ export default function AddProductDetail(): JSX.Element {
             <div className="my-6">
               <label className="block text-xl text-[#666]">Hand</label>
               <textarea
+                minLength={5}
+                maxLength={500}
                 name=""
                 id=""
                 placeholder="ex: kayu jati mod"
@@ -76,6 +86,8 @@ export default function AddProductDetail(): JSX.Element {
                 Important Note
               </label>
               <textarea
+                minLength={5}
+                maxLength={500}
                 name=""
                 id=""
                 placeholder="ex: kayu jati mod"

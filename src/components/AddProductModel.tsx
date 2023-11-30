@@ -4,15 +4,33 @@ import ButtonPagination from "./ButtonPagination";
 
 import { useDispatch } from "react-redux";
 import { nextPage, prevPage } from "../store/slices/formSlice";
+import { useState } from "react";
+import toast from "react-hot-toast";
 
 export default function AddProductModel(): JSX.Element {
   const dispatch = useDispatch();
+  const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
 
   const handleNext = () => {
     dispatch(nextPage());
   };
   const handlePrev = () => {
     dispatch(prevPage());
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+    if (files) {
+      const fileList = Array.from(files);
+      if (selectedFiles.length + fileList.length > 5) {
+        toast.error("Maximum 5 files reached");
+      } else {
+        setSelectedFiles([
+          ...selectedFiles,
+          ...fileList.slice(0, 5 - selectedFiles.length),
+        ]);
+      }
+    }
   };
 
   return (
@@ -24,7 +42,7 @@ export default function AddProductModel(): JSX.Element {
             <div className="my-6">
               <label className="block text-[#666]">Model Name</label>
               <input
-                type="email"
+                type="text"
                 minLength={10}
                 name=""
                 id=""
@@ -35,12 +53,25 @@ export default function AddProductModel(): JSX.Element {
             </div>
             <div className="my-6">
               <label className="block text-xl text-[#666]">Product Image</label>
-              <input type="file"></input>
+              <input
+                type="file"
+                multiple
+                accept=".png, .jpeg"
+                onChange={handleFileChange}
+                disabled={selectedFiles.length >= 5}
+              ></input>
+              <div>
+                {selectedFiles.map((file, index) => (
+                  <div key={index}>{file.name}</div>
+                ))}
+              </div>
             </div>
             <div className="my-6">
               <label className="block text-[#666]">Stock</label>
               <input
-                type="email"
+                type="number"
+                min={1}
+                max={999}
                 name=""
                 id=""
                 placeholder="ex: kayu jati mod"
