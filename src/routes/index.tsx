@@ -27,7 +27,11 @@ export const AppRoute = (): JSX.Element => {
     },
     {
       path: "/product",
-      element: <ProductList />,
+      element: localToken ? (
+        <ProductList />
+      ) : (
+        <Navigate to="/auth/login" replace />
+      ),
     },
     {
       path: "/product/add",
