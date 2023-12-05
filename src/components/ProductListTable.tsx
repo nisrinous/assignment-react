@@ -19,7 +19,8 @@ export default function ProductListTable(): JSX.Element {
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
   const [visible, setVisible] = useState<boolean>(false);
-  let [index, setIndex] = useState<number>(-1);
+  const [indexToDelete, setIndexToDelete] = useState<number>(-1);
+  const [productNameToDelete, setProductNameToDelete] = useState<string>("");
 
   const fetchProducts = async () => {
     try {
@@ -70,14 +71,15 @@ export default function ProductListTable(): JSX.Element {
     navigate(`/product/${productId}`);
   };
 
-  const onDelete = (productIndex: number) => {
+  const onDelete = (productIndex: number, productName: string) => {
+    setProductNameToDelete(productName);
     setVisible(true);
-    setIndex(productIndex);
+    setIndexToDelete(productIndex);
   };
 
   const deleteConfirmed = () => {
     setVisible(false);
-    handleDeleteProduct(index);
+    handleDeleteProduct(indexToDelete);
   };
 
   const deleteCanceled = () => {
@@ -115,16 +117,14 @@ export default function ProductListTable(): JSX.Element {
           className="fixed w-screen h-screen first-letter:right-0 m-auto z-10 bg-gray-200/80 duration-150 ease-in-out"
           id="modal"
         >
-          <div
-            role="alert"
-            className="container mx-auto w-11/12 max-w-lg md:w-2/3 z-50"
-          >
-            <div className="absolute top-1/3 left-1/4 rounded-xl border border-gray-400 bg-white px-5 pt-3 shadow-md md:px-10">
-              <h1 className="font-lg mb-4 border-b pb-2 font-bold leading-tight tracking-normal text-gray-800">
+          <div role="alert" className="container mx-auto z-50">
+            <div className="absolute top-1/3 left-1/4 rounded-xl bg-white px-5 pt-3 shadow-md md:px-10">
+              <h1 className="font-medium mt-1 mb-4 border-b pb-2 leading-tight tracking-normal text-[#D84727] ">
                 Confirm delete
               </h1>
               <p className="my-10 text-sm leading-tight tracking-normal text-gray-800">
-                Are you sure want to delete Product Name?
+                Are you sure want to delete{" "}
+                <span className="text-[#D84727]">{productNameToDelete} </span>?
               </p>
 
               <div className="flex w-full items-center justify-end border-t-2 pt-1">
@@ -183,7 +183,6 @@ export default function ProductListTable(): JSX.Element {
           </div>
         </div>
       </MainHeader>
-
       <section>
         <div className="w-full p-10 md:px-28">
           <div className="relative flex flex-col min-w-0 w-full rounded">
@@ -263,7 +262,9 @@ export default function ProductListTable(): JSX.Element {
                             />
                           </svg>
                         </button>
-                        <button onClick={() => onDelete(product.id)}>
+                        <button
+                          onClick={() => onDelete(product.id, product.name)}
+                        >
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="24"

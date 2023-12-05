@@ -52,7 +52,7 @@ export default function AddProductNew(): JSX.Element {
   return (
     <>
       <div className="overflow-x-auto">
-        <div className="flex flex-col items-left justify-start rounded-xl">
+        <div className="flex flex-col items-left justify-start rounded-md">
           <form onSubmit={handleNext}>
             <div className="my-6">
               <label className="block text-[#666]">Product Name</label>
@@ -74,7 +74,7 @@ export default function AddProductNew(): JSX.Element {
                   value={price}
                   min={100}
                   max={999999999}
-                  placeholder="ex: kayu jati mod"
+                  placeholder="Rp. 20000000"
                   className="w-full px-4 py-3 rounded-lg mt-2 bg-[#F1F1F1]"
                   onChange={(e) => setPrice(Number(e.target.value))}
                   required
@@ -87,7 +87,7 @@ export default function AddProductNew(): JSX.Element {
                   min={1}
                   max={100}
                   value={discount}
-                  placeholder="ex: kayu jati mod"
+                  placeholder="EX: 5"
                   className="w-full px-4 py-3 rounded-lg mt-2 bg-[#F1F1F1]"
                   onChange={(e) => setDiscount(Number(e.target.value))}
                   required
@@ -102,9 +102,9 @@ export default function AddProductNew(): JSX.Element {
                   min={1}
                   max={99}
                   value={weight}
-                  placeholder="ex: kayu jati mod"
+                  placeholder="EX: 200000"
                   className="w-full px-4 py-3 rounded-lg mt-2 bg-[#F1F1F1]"
-                  onChange={(e) => setWeight(Number(e.target.value) + 1)}
+                  onChange={(e) => setWeight(Number(e.target.value))}
                   required
                 />
               </div>
@@ -115,7 +115,7 @@ export default function AddProductNew(): JSX.Element {
                   min={1}
                   max={99}
                   value={length}
-                  placeholder="ex: kayu jati mod"
+                  placeholder="EX: 200000"
                   className="w-full px-4 py-3 rounded-lg mt-2 bg-[#F1F1F1]"
                   onChange={(e) => setLength(Number(e.target.value))}
                   required
@@ -128,7 +128,7 @@ export default function AddProductNew(): JSX.Element {
                   min={1}
                   max={99}
                   value={width}
-                  placeholder="ex: kayu jati mod"
+                  placeholder="EX: 200000"
                   className="w-full px-4 py-3 rounded-lg mt-2 bg-[#F1F1F1]"
                   onChange={(e) => setWidth(Number(e.target.value))}
                   required
@@ -138,11 +138,10 @@ export default function AddProductNew(): JSX.Element {
             <div className="my-6">
               <label className="block text-[#666]">Category</label>
               <select
-                value={category}
                 className="w-full px-4 py-3 rounded-lg mt-2 bg-[#F1F1F1] border-0"
                 onChange={(e) => setCategory(e.target.selectedIndex)}
               >
-                <option className="border-0" disabled selected>
+                <option value="" className="border-0" disabled selected>
                   Choose Category
                 </option>
                 {categories.map((cat) => (

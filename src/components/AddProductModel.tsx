@@ -2,15 +2,18 @@ import MainHeadline from "./MainHeadline";
 import ButtonSecondary from "./ButtonSecondary";
 import ButtonPagination from "./ButtonPagination";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { nextPage, prevPage } from "../store/slices/formSlice";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { setAttribute } from "../store/slices/productSlice";
+import { RootState } from "../store/store";
 
 export default function AddProductModel(): JSX.Element {
   const dispatch = useDispatch();
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
   const [modelCount, setModelCount] = useState<number>(1);
+  const { model } = useSelector((state: RootState) => state.product);
 
   const handleNext = () => {
     dispatch(nextPage());
@@ -20,7 +23,7 @@ export default function AddProductModel(): JSX.Element {
   };
 
   const addModel = () => {
-    setModelCount(modelCount + 1); // Increment the model count
+    setModelCount(modelCount + 1);
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -30,12 +33,45 @@ export default function AddProductModel(): JSX.Element {
       if (selectedFiles.length + fileList.length > 5) {
         toast.error("Maximum 5 files reached");
       } else {
-        setSelectedFiles([
+        const updatedFiles = [
           ...selectedFiles,
           ...fileList.slice(0, 5 - selectedFiles.length),
-        ]);
+        ];
+
+        setSelectedFiles(updatedFiles);
+
+        const photos: string[] = updatedFiles.map((file) =>
+          URL.createObjectURL(file)
+        );
+        const updatedModel = model.map((item, index) => {
+          if (index === 0) {
+            return {
+              ...item,
+              photos,
+            };
+          }
+          return item;
+        });
+
+        dispatch(setAttribute({ model: updatedModel }));
       }
     }
+  };
+
+  const setModelName = (index: number, name: string) => {
+    const updatedModel = model.map((item, i) =>
+      i === index ? { ...item, name } : item
+    );
+
+    dispatch(setAttribute({ model: updatedModel }));
+  };
+
+  const setModelQty = (index: number, qty: number) => {
+    const updatedModel = model.map((item, i) =>
+      i === index ? { ...item, qty } : item
+    );
+
+    dispatch(setAttribute({ model: updatedModel }));
   };
 
   return (
@@ -59,6 +95,7 @@ export default function AddProductModel(): JSX.Element {
                   id=""
                   placeholder="ex: kayu jati mod"
                   className="w-full px-4 py-3 rounded-lg mt-2 bg-[#F1F1F1]"
+                  onChange={(e) => setModelName(index, e.target.value)}
                   required
                 />
               </div>
@@ -89,6 +126,7 @@ export default function AddProductModel(): JSX.Element {
                   id=""
                   placeholder="ex: kayu jati mod"
                   className="w-full px-4 py-3 rounded-lg mt-2 bg-[#F1F1F1]"
+                  onChange={(e) => setModelQty(index, Number(e.target.value))}
                   required
                 />
               </div>

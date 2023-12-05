@@ -22,24 +22,6 @@ interface ProductState {
   }[];
 }
 
-// const initialState: ProductState = {
-//   id: 0,
-//   name: "",
-//   price: 0,
-//   weight: 0,
-//   width: 0,
-//   length: 0,
-//   category: 0,
-//   discount: 0,
-//   caseDetail: "",
-//   dial: "",
-//   hand: "",
-//   material: "",
-//   importantNote: "",
-//   movement: "",
-//   model: [],
-// };
-
 const productSlice = createSlice({
   name: "product",
   initialState: {} as ProductState,
@@ -47,8 +29,18 @@ const productSlice = createSlice({
     setAttribute: (state, action: PayloadAction<Partial<ProductState>>) => {
       Object.assign(state, action.payload);
     },
+    setModelAttribute: (
+      state,
+      action: PayloadAction<{
+        index: number;
+        updatedModel: Partial<ProductState["model"][number]>;
+      }>
+    ) => {
+      const { index, updatedModel } = action.payload;
+      state.model[index] = { ...state.model[index], ...updatedModel };
+    },
   },
 });
 
-export const { setAttribute } = productSlice.actions;
+export const { setAttribute, setModelAttribute } = productSlice.actions;
 export default productSlice.reducer;

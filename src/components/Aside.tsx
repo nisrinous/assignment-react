@@ -49,12 +49,18 @@ export default function Aside(): JSX.Element {
                   PRODUCT
                 </span>
               </a>
-              <a className="flex items-center justify-center w-full h-12 px-3 -2 rounded">
+              <a
+                href="/revenue"
+                className="flex items-center justify-center w-full h-12 px-3 -2 rounded"
+              >
                 <span className="ml-5 text-medium font-bold  text-[#333] hover:text-[#D84727]">
                   REVENUE
                 </span>
               </a>
-              <a className="flex items-center justify-center w-full h-12 px-3 -2 rounded">
+              <a
+                href="/category"
+                className="flex items-center justify-center w-full h-12 px-3 -2 rounded"
+              >
                 <span className="ml-5 text-medium font-bold  text-[#333] hover:text-[#D84727]">
                   CATEGORIES
                 </span>
